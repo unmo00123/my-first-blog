@@ -5,6 +5,16 @@
     <title>My first blog</title>
 </head>
 <body>
-
+<div>
+    <h1><a href="/">My first blog</a></h1>
+    <p>ぴょおおおおおおおおおおおおお</p>
+</div>
+    {% for post in posts %}
+        <div>
+            <p>published: {{ post.published_date }}</p>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
 </body>
 </html>
