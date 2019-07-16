@@ -36,7 +36,7 @@ def approved_comments(self):
 
 class Photo(models.Model):
     attach = models.FileField(
-        upload = 'upload/',
-        verbose = '添付ファイル',
+        upload_to = 'upload/',
+        verbose_name = '添付ファイル',
         validators= [FileExtensionValidator(['pdf', ])],
     )
