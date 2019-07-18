@@ -15,7 +15,6 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
-        <img src="" alt="picture1"width="492" height="369" pk=post.pk />
     </div>
 <hr>
 {% for comment in post.comments.all %}

@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>My first blog</title>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/blogbase.css' %}">
     </head>
 <body>
     <div class="page-header">
@@ -13,7 +13,9 @@
     {% else %}
         <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
     {% endif %}
-    <h1><a href="/">My first Blog</a></h1>
+        <div>
+        <h1 class="st"><a href="/">My first Blog</a></h1>
+        </div>
     </div>
     <div class="content container">
         <div class="row">

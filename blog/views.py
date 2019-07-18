@@ -1,11 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ModelFormWithFileField
+
+from .forms import PostForm, CommentForm, FileFieldForm
 from .models import Post, Comment
-from django.http import HttpResponseRedirect
-from django.
-from somewhere import handle_uploaded_file
+
+
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -79,6 +80,10 @@ def comment_approve(request, pk):
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
 
+class PhotoForm(object):
+    pass
+
+
 @login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
@@ -97,10 +102,10 @@ def handle_uploaded_file(f):
 
 def upload_file(request):
     if request.method == 'POST':
-        form = ModelFormWithFileField(request.POST, request.FILES)
-        if form.is_valid():
+       form = FileFieldForm(request.POST, request.FILES)
+    if form.is_valid():
             form.save()
             return HttpResponseRedirect('/success/url/')
     else:
-        form = ModelFormWithFileField()
+        form = FileFieldForm()
     return render(request, 'upload.html', {'form': form})
