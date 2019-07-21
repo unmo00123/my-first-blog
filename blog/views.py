@@ -1,12 +1,11 @@
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-
-from .forms import PostForm, CommentForm, FileFieldForm
+from django.contrib.auth.decorators import login_required
+from .forms import PostForm, CommentForm , FileFieldForm #, ModelFormWithFileField
 from .models import Post, Comment
-
-
+from django.http import HttpResponseRedirect
+# from somewhere import handle_uploaded_file
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -89,6 +88,10 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+
+class PhotoForm(object):
+    pass
 
 
 def index(request):
